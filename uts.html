@@ -1,0 +1,115 @@
+<html> 
+	<head>
+		<title>Ujian Tengah Semester</title>
+		<style type="text/css">
+			canvas{
+				border: 1px solid;
+				width: 850px;
+				height: 500px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+
+		<script type="text/javascript">
+
+			var background=new Image();
+			background.src="E:/Agoy/agoy/UTS/kota.jpg";
+
+			var bola=new Image();
+			bola.src="E:/Agoy/agoy/UTS/rasengan.png";
+			
+			var burung=new Image();
+			burung.src="E:/Agoy/agoy/UTS/agoyyy.png";
+
+
+			function myApp(){
+
+				var speed=4;
+
+			document.addEventListener('keydown',function(e){
+					if(e.key=='ArrowRight')
+					{
+						burung1.x+=speed;
+					}
+					else if(e.key=='ArrowLeft')
+					{
+						burung1.x-=speed;
+					}
+					else if(e.key=='ArrowDown')
+					{
+						burung1.y+=speed;
+					}
+					else if(e.key=='ArrowUp')
+					{
+						burung1.y-=speed;
+					}
+
+					if(e.key==8)
+					{
+						rasengan.push({"x":burung1.x,"y":burung1.x,"w":50,"h":50});
+					}
+
+				})
+
+				var canvas= document.getElementById('canvas');
+				var ctx=canvas.getContext('2d');
+
+				canvas.width=canvas.scrollWidth;
+				canvas.height=canvas.scrollHeight;
+
+				var cWidth=canvas.width;
+				var cHeight=canvas.height;
+
+				var rasengan=[];
+
+				function renderRasengan(){
+					for (var i = 0; i<rasengan.length; i++) {
+						var p=rasengan[i];
+						ctx.drawImage(bola,p.x+=5,p.y);
+					}
+				}
+
+
+				function Background(){
+					this.x=0,this.y=0;
+					this.render=function(){
+						ctx.drawImage(background,this.x--,this.y);
+						if (this.x==-1699) {
+							this.x=0
+						}
+					}
+
+				}
+
+				var background1=new Background();
+
+				function Burung(){
+					this.x=1, this.y=130, this.w=500, this.h=50;
+					this.render=function(){
+						ctx.drawImage(burung,this.x,this.y);
+
+					}
+
+				}
+
+				var burung1=new Burung();
+
+				function animasi(){
+					ctx.save();
+					ctx.clearRect(0,0,cWidth,cHeight);
+
+					background1.render();
+					burung1.render();
+					renderRasengan();
+					ctx.restore();
+				}
+				var interval = setInterval(animasi,20);
+			}
+
+			window.onload=myApp;
+		</script>
+
+	</body>
+</html>
