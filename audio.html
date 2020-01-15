@@ -46,9 +46,15 @@
         </style>
 
         <!-- ----------------------------------------------------- -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.min.js"></script>
+  <script src="particle.js"></script>
+  <script src="particles.js"></script>
+  <script src="rays.js"></script>
+  <script src="main.js"></script>
 
         <script type="text/javascript">
+
+  
             // Hacks to deal with different function names in different browsers
             window.requestAnimFrame = (function(){
               return  window.requestAnimationFrame       ||
@@ -72,7 +78,7 @@
             var sampleSize = 1024;  // number of samples to collect before analyzing data
             var amplitudeArray;     // array to hold time domain data
             // This must be hosted on the same server as this page - otherwise you get a Cross Site Scripting error
-            var audioUrl = "Lewis Capaldi - Before You Go.mp3";
+            var audioUrl = "TWICE What is Love.mp3";
             // Global Variables for the Graphics
             var canvasWidth  = 1000;
             var canvasHeight = 450;
@@ -166,7 +172,7 @@
                     var value = amplitudeArray[i] / 300;
                     var y = canvasHeight - (canvasHeight * value) - 1;
                     var x = i*canvasWidth/amplitudeArray.length;
-                    var clr=['red','blue','yellow'];
+                    var clr=['red','green','yellow'];
                     var color=Math.floor(Math.random()*10);
                     ctx.fillStyle = 'blue-green';
                     ctx.fillRect(x, 1, 1, y);
